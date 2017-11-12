@@ -1,4 +1,4 @@
-function [result, choosen] = Step2(Matrix)
+function [result, choosen] = Step2(Matrix, Debug)
     result = 1;
     n = size(Matrix, 1);
     
@@ -86,9 +86,7 @@ function [result, choosen] = Step2(Matrix)
             if (sum(sum(Remainder_Matrix)) == 0)
                    choosen_strings(indexer_choosen_strings) = secret_i;
                    indexer_choosen_strings = indexer_choosen_strings + 1;
-                   
-                   
-                   
+                                            
                    choosen_columns(indexer_choosen_columns) = secret_j;
                    indexer_choosen_columns = indexer_choosen_columns + 1;
                    
@@ -101,15 +99,18 @@ function [result, choosen] = Step2(Matrix)
         end
     end
     
-    %result = 1;
+    if (Debug == 1)
+        print_Matrix_cuted(Matrix, choosen_columns, choosen_strings);
+    end
+    
     choosen = zeros(n,n);
     
     if (result ~= 0)
         for i = 1:n
            choosen(choosen_strings(i), choosen_columns(i)) = 1;
         end
-        print_Matrix(choosen)
+        
+        fprintf(" Матрица выборов: \n" );
+        print_Matrix(choosen);
     end 
-    %disp(choosen_strings);
-    %disp(choosen_columns);
 end

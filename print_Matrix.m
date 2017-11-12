@@ -6,6 +6,5 @@ function print_Matrix(Cm)
         end
         fprintf("\n");
     end
-    fprintf("\n");
-    fprintf("\n");
+    %fprintf("\n");
 end

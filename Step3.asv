@@ -20,6 +20,7 @@ function count_last_zeros = Count_matrix_zeros(Matrix,deleted_strings,deleted_co
     count_last_zeros = 0;
 	for i = 1:size(Matrix,1)
 		for j = 1:size(Matrix,2)
+			%if (Matrix(i,j)==0 && ~ismember(i,deleted_strings) && ~ismember(j,deleted_columns))
             if (Matrix(i,j)==0 && any(deleted_strings(:) == i) == 0 && any(deleted_columns(:) == j) == 0)
 				count_last_zeros = count_last_zeros + 1;
 			end
@@ -85,7 +86,7 @@ function New_Matrix = change_matrix(New_Matrix, deleted_columns,deleted_strings)
      minimum = 99999;
      for i = 1:size(New_Matrix,1)
         for j = 1:size(New_Matrix,2)
-            if (New_Matrix(i,j) < minimum && any(deleted_strings(:) == i) == 0 && any(deleted_columns(:) == j) == 0)
+            if (any(deleted_strings(:) == i) == 0 && any(deleted_columns(:) == j) == 0)
                 minimum = New_Matrix(i,j);
             end
         end
